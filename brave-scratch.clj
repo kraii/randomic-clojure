@@ -28,6 +28,11 @@
                        {:name "left-achilles" :size 1}
                        {:name "left-foot" :size 2}])
 
+(defn matching-part
+  [part orientation]
+  {:name (clojure.string/replace (:name part) #"^left-" (str orientation "-"))
+   :size (:size part)})
+
 (defn matching-parts
   [part]
   [(matching-part part "mid-left")
@@ -36,10 +41,6 @@
    (matching-part part "right")]
   )
 
-(defn matching-part
-  [part orientation]
-  {:name (clojure.string/replace (:name part) #"^left-" (str orientation "-"))
-   :size (:size part)})
 
 (defn alienize-body-parts
   "Expects a seq of maps that have a :name and :size"
@@ -50,3 +51,4 @@
           asym-body-parts))
 
 ; 6
+
